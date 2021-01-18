@@ -38,8 +38,12 @@ export default class todo extends Component {
     }
 
     handleAdd() {
-        axios.post(URL, {  "description": this.state.description, "done":false, "username": "rafael" })
-            .then(resp => this.refresh())
+        const description = this.state.description;
+        debugger
+        if(description != ''){
+            axios.post(URL, {  "description": description, "done":false, "username": "rafael" })
+                .then(resp => this.refresh())
+        }
     }
 
     handleChange(e) {
