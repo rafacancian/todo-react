@@ -55,4 +55,8 @@ public class TaskService {
         return TaskVOAdapter.create(task);
     }
 
+    public void delete(Long id) {
+        final Optional<Task> task = gateway.findById(id);
+        task.ifPresent(gateway::delete);
+    }
 }

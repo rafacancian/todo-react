@@ -51,4 +51,10 @@ public class TaskController extends ControllerException {
         final TaskVO taskVOCreated = taskService.create(taskVO);
         return new ResponseEntity<>(taskVOCreated, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
+        taskService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }

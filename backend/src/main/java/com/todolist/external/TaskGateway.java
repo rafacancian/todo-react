@@ -17,5 +17,5 @@ public interface TaskGateway {
 
     Task save(Task task);
 
-
+    void delete(Task task);
 }

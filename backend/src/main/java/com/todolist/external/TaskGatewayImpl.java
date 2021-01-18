@@ -21,6 +21,7 @@ public class TaskGatewayImpl implements TaskGateway {
     public static final String MSG_ERROR_FIND_BY_ID = "Internal error when try to find task by ID on database";
     public static final String MSG_ERROR_FIND_ALL = "Internal error when try to find all tasks on database";
     public static final String MSG_ERROR_SAVE = "Internal error when try to save task on database";
+    public static final String MSG_ERROR_DELETE = "Internal error when try to delete task on database";
 
 
     private final TaskRepository repository;
@@ -66,6 +67,17 @@ public class TaskGatewayImpl implements TaskGateway {
         } catch (final Exception e) {
             log.error(MSG_ERROR_SAVE);
             throw new GatewayException(MSG_ERROR_SAVE, e);
+        }
+    }
+
+    @Override
+    public void delete(Task task) {
+        try {
+            log.debug("TicketGatewayImpl delete ticket");
+            repository.delete(task);
+        } catch (final Exception e) {
+            log.error(MSG_ERROR_DELETE);
+            throw new GatewayException(MSG_ERROR_DELETE, e);
         }
     }
 
