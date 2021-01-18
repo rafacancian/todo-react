@@ -5,15 +5,7 @@ export default props => {
 
    const renderRows = () => {
 
-           const list = [
-               { "_id":"1", "description":"Description about the task 01", "done":true},
-               { "_id":"2", "description":"Description about the task 02", "done":true},
-               { "_id":"3", "description":"Description about the task 03", "done":true},
-               { "_id":"4", "description":"Description about the task 04", "done":false},
-               { "_id":"5", "description":"Description about the task 05", "done":false},
-               { "_id":"6", "description":"Description about the task 06", "done":false},
-               { "_id":"7", "description":"Description about the task 07", "done":false},
-               { "_id":"8", "description":"Description about the task 08", "done":false}]
+           const list = props.list || []
 
            return list.map(todo => (
                <tr key={todo._id}>
