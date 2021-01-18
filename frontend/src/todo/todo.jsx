@@ -30,10 +30,7 @@ export default class todo extends Component {
         debugger
         const filter = description ? `/search?description=${description}` : ''
         axios.get(`${URL}`+ filter)
-            .then(resp => {
-                debugger
-                this.setState({...this.state, description: '', list:resp.data.tasks})
-            })
+            .then(resp => this.setState({...this.state, description: '', list:resp.data.tasks}))
     }
 
     handleSearch() {
@@ -42,21 +39,21 @@ export default class todo extends Component {
 
     handleAdd() {
         axios.post(URL, {  "description": this.state.description, "done":false, "username": "rafael" })
-            .then(resp => {
-                debugger
-                this.refresh()
-            })
-
+            .then(resp => this.refresh())
     }
 
     handleChange(e) {
         this.setState({...this.state , description: e.target.value})
     }
 
-    handleMarkAsDone() {
-    }
+    handleMarkAsDone(task) {
+        axios.put(URL, {...task, done: true})
+            .then(resp => this.refresh())
+     }
 
-    handleMarkAsPending() {
+    handleMarkAsPending(task) {
+        axios.put(URL, {...task, done: false})
+            .then(resp => this.refresh())
 
     }
     handleRemove(id) {

@@ -12,9 +12,9 @@ export default props => {
                    <td className={task.done ? 'markedAsDone' : ''}>{task.description}</td>
                    <td>
                        <IconButton style='success' icon='check' hide={task.done}
-                           onClick={() => props.handleMarkAsDone(todo)}></IconButton>
+                           onClick={() => props.handleMarkAsDone(task)}></IconButton>
                        <IconButton style='warning' icon='undo' hide={!task.done}
-                           onClick={() => props.handleMarkAsPending(todo)}></IconButton>
+                           onClick={() => props.handleMarkAsPending(task)}></IconButton>
                        <IconButton style='danger' icon='trash-o' hide={!task.done}
                            onClick={() => props.handleRemove(task.id)}></IconButton>
                    </td>
