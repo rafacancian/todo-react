@@ -7,16 +7,16 @@ export default props => {
 
            const list = props.list || []
 
-           return list.map(todo => (
-               <tr key={todo.id}>
-                   <td className={todo.done ? 'markedAsDone' : ''}>{todo.description}</td>
+           return list.map(task => (
+               <tr key={task.id}>
+                   <td className={task.done ? 'markedAsDone' : ''}>{task.description}</td>
                    <td>
-                       <IconButton style='success' icon='check' hide={todo.done}
+                       <IconButton style='success' icon='check' hide={task.done}
                            onClick={() => props.handleMarkAsDone(todo)}></IconButton>
-                       <IconButton style='warning' icon='undo' hide={!todo.done}
+                       <IconButton style='warning' icon='undo' hide={!task.done}
                            onClick={() => props.handleMarkAsPending(todo)}></IconButton>
-                       <IconButton style='danger' icon='trash-o' hide={!todo.done}
-                           onClick={() => props.handleRemove(todo)}></IconButton>
+                       <IconButton style='danger' icon='trash-o' hide={!task.done}
+                           onClick={() => props.handleRemove(task.id)}></IconButton>
                    </td>
                </tr>
            ))
