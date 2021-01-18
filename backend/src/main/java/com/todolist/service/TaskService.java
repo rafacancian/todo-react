@@ -59,4 +59,13 @@ public class TaskService {
         final Optional<Task> task = gateway.findById(id);
         task.ifPresent(gateway::delete);
     }
+
+    public TaskVO update(TaskVO taskVO) {
+        final Optional<Task> task = gateway.findById(taskVO.getId());
+        if (task.isEmpty()) {
+            throw new EntityNotFoundException("Erro1", "Erro2");
+        }
+        taskVO.setId(task.get().getId());
+        return create(taskVO);
+    }
 }

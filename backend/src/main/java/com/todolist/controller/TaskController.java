@@ -44,6 +44,12 @@ public class TaskController extends ControllerException {
         return new ResponseEntity<>(responseVO, HttpStatus.OK);
     }
 
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {
+            MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<?> update(@RequestBody TaskVO taskVO) {
+        final TaskVO taskVOUpdated = taskService.update(taskVO);
+        return new ResponseEntity<>(taskVOUpdated, HttpStatus.CREATED);
+    }
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
