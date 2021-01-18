@@ -37,6 +37,12 @@ public class TaskService {
         return TaskVOAdapter.create(task.get());
     }
 
+    public ResponseVO findByDescription(String description) {
+        final List<Task> tasks = gateway.findByDescription(description);
+        final List<TaskVO> taskVOS = TaskVOAdapter.create(tasks);
+        return ResponseVOAdapter.create(taskVOS);
+    }
+
     public ResponseVO findAll(int page, int size) {
         final Pageable pageable = PageRequest.of(page, size);
         final Page<Task> pageTickets = gateway.findAll(pageable);
@@ -48,6 +54,5 @@ public class TaskService {
         final Task task = gateway.save(TaskAdapter.create(ticketVO));
         return TaskVOAdapter.create(task);
     }
-
 
 }

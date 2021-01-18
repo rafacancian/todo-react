@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -29,6 +30,17 @@ public class TaskGatewayImpl implements TaskGateway {
         try {
             log.debug("TaskGatewayImpl find task by id");
             return repository.findById(id);
+        } catch (final Exception e) {
+            log.error(MSG_ERROR_FIND_BY_ID);
+            throw new GatewayException(MSG_ERROR_FIND_BY_ID, e);
+        }
+    }
+
+    @Override
+    public List<Task> findByDescription(String description) {
+        try {
+            log.debug("TaskGatewayImpl find task by id");
+            return repository.findByDescriptionContainingIgnoreCase(description);
         } catch (final Exception e) {
             log.error(MSG_ERROR_FIND_BY_ID);
             throw new GatewayException(MSG_ERROR_FIND_BY_ID, e);

@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 
 @Slf4j
 @RestController
@@ -21,14 +23,14 @@ public class TaskController extends ControllerException {
 
     private final TaskService taskService;
 
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         log.debug("Receiving parameters to find ticket by id: {}", id);
         final TaskVO taskVO = taskService.findById(id);
         return new ResponseEntity<>(taskVO, HttpStatus.OK);
     }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping()
     public ResponseEntity<?> findAll(
             @RequestParam(value = "page", required = false, defaultValue = "0") final int page,
             @RequestParam(value = "page-size", required = false, defaultValue = "10") final int size) {
@@ -36,11 +38,16 @@ public class TaskController extends ControllerException {
         return new ResponseEntity<>(responseVO, HttpStatus.OK);
     }
 
-    //TODO creation with mock. Not implemented yet
+    @GetMapping(value = "/search")
+    public ResponseEntity<?> search(@PathParam("description") final String description) {
+        final ResponseVO responseVO = taskService.findByDescription(description);
+        return new ResponseEntity<>(responseVO, HttpStatus.OK);
+    }
+
+
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> create(@RequestBody TaskVO taskVO) {
-        taskVO = TaskVO.builder().description("create by controller").isDone(false).username("rafacancian").build();
         final TaskVO taskVOCreated = taskService.create(taskVO);
         return new ResponseEntity<>(taskVOCreated, HttpStatus.CREATED);
     }
