@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
-@JsonPropertyOrder({"id", "description", "done", "username"})
+@JsonPropertyOrder({"id", "description", "done", "username", "creation_date", "due_date"})
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,5 +29,11 @@ public class TaskVO implements Serializable {
 
     @JsonProperty("username")
     private String username;
+
+    @JsonProperty("creation_date")
+    private LocalDate creationDate;
+
+    @JsonProperty("due_date")
+    private LocalDate dueDate;
 
 }

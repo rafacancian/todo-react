@@ -5,6 +5,7 @@ import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "task")
@@ -31,5 +32,11 @@ public class Task implements Serializable {
 
     @Column(name = "username", nullable = true)
     private String username;
+
+    @Column(name = "creation_date", nullable = false)
+    private LocalDate creationDate;
+
+    @Column(name = "due_date", nullable = true)
+    private LocalDate dueDate;
 
 }

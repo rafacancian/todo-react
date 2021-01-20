@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,8 @@ public class TaskService {
     }
 
     public TaskVO create(final TaskVO ticketVO) {
+        ticketVO.setCreationDate(LocalDate.now());
+        ticketVO.setDueDate(LocalDate.now().plusDays(2));
         final Task task = gateway.save(TaskAdapter.create(ticketVO));
         return TaskVOAdapter.create(task);
     }
