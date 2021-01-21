@@ -1,5 +1,5 @@
 .btn {
-    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .container{
@@ -16,9 +16,10 @@
 }
 
 .tableActions {
-    width: 105px;
+    width: 40px;
 }
 
+
 .todoForm {
-    padding-bottom: 60px;
+    padding: 20px 0px 50px 30px;
 }

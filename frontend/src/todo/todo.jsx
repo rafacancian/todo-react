@@ -72,7 +72,7 @@ export default class todo extends Component {
     render(){
         return (
             <div>
-               <PageHeader name='Task'></PageHeader>
+                {/*<PageHeader name='Task'></PageHeader>*/}
                <TodoForm
                     description={this.state.description}
                     handleChange={this.handleChange}
