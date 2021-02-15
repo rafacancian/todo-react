@@ -29,5 +29,8 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "react-bootstrap-date-picker": "^5.1.0"
+  }
 }
