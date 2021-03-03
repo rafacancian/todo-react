@@ -6,6 +6,9 @@ Project create to study frontend technologies
 ##RUN
 `npm run dev`
 
+##Dashboard
+![](https://github.com/rafacancian/todo-react/blob/master/pictures/todolist.JPG)
+
 ##React
 React is an open source JavaScript library focused on creating user interfaces on web pages
 React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. 
